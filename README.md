@@ -20,5 +20,7 @@ Fill a brief description of this experiment here
 
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
-1 | . | . | . | . | .
-2 | . | . | . | . | .
+1 | Dr. Asha Vijayan | Faculty | Amrita School of Biotechnology | Amrita Vishwa Vidyapeetham | ashavijayan@am.amrita.edu
+2 | Nijin N | Research Assistant | Amrita Virtual Labs | Amrita Vishwa Vidyapeetham | nijinn@am.amrita.edu
+3 | Rakhi Radhamani | Research Assistant | Amrita Virtual Labs | Amrita Vishwa Vidyapeetham | rakhir@am.amrita.edu
+4 | Dhanush Kumar | Research Assistant | Amrita Virtual Labs | Amrita Vishwa Vidyapeetham | dhanushkumar@am.amrita.edu
