@@ -58,8 +58,11 @@ Measures the disorder of the system. Although base pairing restricts molecular m
 
 #### •	Gibbs Free Energy (ΔG):
 Determines the spontaneity of RNA folding. A negative ΔG indicates a thermodynamically favourable RNA conformation, meaning that the RNA molecule will naturally adopt the structure with the lowest free energy.
+&nbsp;
 
+<img src="images/3.png" title="" />
 
+&nbsp;
 
 RNA folding is governed by thermodynamic principles, particularly Gibbs free energy (ΔG). The Gibbs free energy of RNA folding determines the stability of a given structure, where a more negative ΔG value indicates a more thermodynamically favourable conformation. RNA molecules fold into structures that minimize their free energy by balancing base-pairing, stacking interactions, and loop formation. Computational RNA structure prediction methods, such as the Zuker algorithm, utilize thermodynamic parameters to estimate the most stable conformation by identifying the structure with the lowest Gibbs free energy.
 
@@ -87,8 +90,16 @@ Guanine (G) pairs with Cytosine (C) and Adenine (A) pairs with Uracil (U).
 ##### •	Wobble Pairing:
 Guanine (G) can also pair with Uracil (U), though these pairs are less stable.
 Applying to the given RNA sequence: For 5′−GCGAAUUCGC−3, possible base pairings are
- 
+&nbsp;
+
+<img src="images/4.png" title="" />
+
+&nbsp;
+
 Since RNA folds to maximize stable pairings, these interactions will form a stem-loop (hairpin) structure.
+
+
+&nbsp;
 
 
 #### 2.	Computing Free Energy Contributions
@@ -103,6 +114,13 @@ Unpaired regions in loops introduce entropy (ΔS), which affects the overall sta
 ##### •	Energy Contribution Calculation:
 Each interaction is assigned an experimentally determined energy value. These values are obtained from databases, and the total Gibbs energy is calculated using the equation The structure with the lowest ΔG (most negative) is the most stable.
 
+&nbsp;
+
+<img src="images/5.png" title="" />
+
+&nbsp;
+
+&nbsp;
 
 #### 3.	Dynamic Programming Table Construction:
 
@@ -119,17 +137,22 @@ Start with shorter sequences (small loops) and compute their free energy. Extend
 ##### •	Trace Back the Best Structure:
 Once the matrix is complete, the algorithm traces back the base pairings that led to the lowest ΔG.
 
+&nbsp;
+
 #### 4.	Final RNA Structure Prediction:
 
 The RNA structure with the lowest Gibbs free energy is selected as the most probable conformation. 
 
 Predicted Structure for 5′−GCGAAUUCGC−3′ is a stem-loop (hairpin)
 
+&nbsp;
+
+<img src="images/6.png" title="" />
+
+&nbsp;
 
 
-
-
-
+&nbsp;
 
 ### Applications of Zuker’s Algorithms: 
 The thermodynamic modelling of RNA and Zuker’s algorithm are widely used in:
