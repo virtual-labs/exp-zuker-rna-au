@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RNA Secondary Structure Prediction</title>
-    <link rel="stylesheet" href="styles.css">   
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.0/canvg.min.js"></script>  
     <script src="script.js" defer></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+
 </head>
 <body>
     <div class="container">
-        <h1>RNA Secondary Structure Prediction
-                <button class="instructions-btn" onclick="openInstructionsPage()">📜 Instructions</button>
-        </h1>
+        <img src="https://webfiles.amrita.edu/2024/07/logo-branding-amrita-universiy-2024.png" alt="Amrita University Logo" class="logo">
+        <h1>RNA Secondary Structure Prediction</h1>
+
+        <!-- Instructions Section -->
+<div id="instructionsContainer">
+    <h2>📌 How to Use This Tool</h2>
+    <div class="instruction-step">1️⃣ Enter a valid DNA sequence in the input box.</div>
+    <div class="instruction-step">2️⃣ Click "Start Simulation" to begin the process.</div>
+    <div class="instruction-step">3️⃣ Follow the steps to convert DNA to RNA and generate structures.</div>
+    <div class="instruction-step">4️⃣ View the RNA structure and its stability information.</div>
+    <div class="instruction-step">5️⃣ Use the reset button to start a new simulation.</div>
+</div>
+
         <!-- DNA Input Section -->
         <textarea id="dnaInput" placeholder="Enter DNA sequence"></textarea>
 
@@ -53,7 +65,22 @@
             <div id="infoBox"></div>
         </div>
 
-        <button onclick="openRNAInfoPage()" style="margin-top: 20px; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Learn More</button>   
+        <button onclick="openRNAInfoPage()" style="margin-top: 20px; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Learn More</button>  
+        
+        <!-- Export Button -->
+<button onclick="showExportOptions()" class="export-btn">📤 Export Results</button>
+
+<!-- Export Options Popup -->
+<div id="exportPopup" class="export-popup hidden">
+    <h3>Choose Export Option:</h3>
+    <button onclick="downloadRNAImage('png')">📸 Download RNA Structure (PNG)</button>
+    <button onclick="downloadRNAImage('jpg')">🖼️ Download RNA Structure (JPG)</button>
+    <button onclick="downloadSimulationResults()">📄 Download Simulation Data</button>
+    <button onclick="downloadStructureData()">📜 Download Structure & Energy Data</button>
+    <button onclick="closeExportPopup()" class="close-btn">❌ Close</button>
+</div>
+
+
     </div>
 </body>
 </html>
@@ -67,7 +94,7 @@ body {
     transition: all 0.5s ease-in-out;
 }
 
-/* Main Container */
+/* 🏛️ Main Container */
 .container {
     max-width: 80%;
     margin: 20px auto;
@@ -76,51 +103,125 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1s ease-in-out;
+    position: relative; /* Needed for absolute positioning */
+    padding-top: 60px; /* Ensures space for logo */
 }
 
-/* Headers */
-/* Headers - Centered Heading */
+/* 🎓 Logo - Fixed at the Top Left */
+.logo {
+    position: absolute;
+    top: 15px; /* Moves it slightly lower */
+    left: 15px;
+    height: 50px;
+    width: auto;
+}
+
+/* 📌 Center the Heading Properly */
 h1 {
     font-size: 28px;
     color: #333;
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: slideDown 2s ease-in-out;
-    
-    display: flex;
-    flex-direction: column; /* Stack heading and button */
-    align-items: center;  /* Center both heading & button */
     text-align: center;
+    margin: 0 auto;
 }
 
-/* 📜 Instructions Button - Below Heading */
-.instructions-btn {
-    font-size: 14px;
-    padding: 8px 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px; /* Space between heading and button */
-    transition: transform 0.3s, background 0.3s;
-}
-
-/* Hover Effect */
-.instructions-btn:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
-
-/* 📱 Responsive Adjustments for Mobile */
+/* 📱 Mobile Responsive Adjustments */
 @media (max-width: 768px) {
-    .instructions-btn {
-        font-size: 12px;
-        padding: 6px 10px;
-        margin-top: 8px; /* Adjust spacing for small screens */
+    .logo {
+        height: 40px; /* Slightly smaller logo for mobile */
+        top: 10px; /* Adjusted top padding */
+        left: 10px;
     }
 }
 
+/* 📱 Landscape Mode Fix */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        padding-top: 80px; /* Increases top padding when in landscape */
+    }
+    .logo {
+        height: 35px; /* Reduce logo size in landscape */
+        top: 5px;
+        left: 10px;
+    }
+}
+
+
+
+/* 📌 Instructions Section - Compact & Responsive */
+#instructionsContainer {
+    max-width: 80%;
+    margin: 15px auto; /* Reduced top and bottom margin */
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Instructions Title */
+#instructionsContainer h2 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 10px;
+    animation: slideDown 1s ease-in-out;
+}
+
+/* Instruction Steps - Smaller Height */
+.instruction-step {
+    background: white;
+    padding: 10px; /* Reduced padding */
+    margin: 6px 0; /* Reduced margin */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 15px; /* Slightly smaller text */
+    line-height: 1.4;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* ⚡ Hover Effect - Lift & Glow */
+.instruction-step:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* 🎬 Keyframe Animations */
+
+/* 📌 Fade-In Effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📌 Slide-Down Effect */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📌 Fade-In-Up Animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+    #instructionsContainer {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .instruction-step {
+        font-size: 14px;
+        padding: 8px; /* Further reduced padding */
+    }
+}
 
 
 /* DNA Input Section */
@@ -440,6 +541,93 @@ button:hover {
     transform: scale(1);
 }
 
+/* 🌟 Soft Glow Animation for Main Container */
+@keyframes softGlow {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(0, 123, 255, 0.4); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.2); }
+}
+.container {
+    animation: softGlow 3s infinite alternate;
+}
+
+/* 🌊 Smooth Floating Effect for Steps */
+@keyframes floatUp {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+
+/* 🔵 Enhanced Soft Border Pulse for RNA Structure */
+@keyframes pulseBorder {
+    0% { border-color: #007bff; }
+    50% { border-color: #0056b3; }
+    100% { border-color: #007bff; }
+}
+#rnaStructureContainer.active {
+    animation: pulseBorder 2s infinite alternate;
+}
+
+/* 🎬 Smooth Appear Effect for RNA Drawing */
+@keyframes zoomFade {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+#rnaStructureContainer {
+    animation: zoomFade 1s ease-in-out;
+}
+
+/* 🌟 Soft Hover Glow for Buttons */
+button:hover {
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* 🎯 Gentle Slide-In for Step Buttons */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.step-button {
+    animation: slideIn 0.8s ease-in-out;
+}
+
+/* 🔄 Remove Rotate Effect and Add Soft Zoom on Hover */
+.step-button:hover {
+    transform: scale(1.08); /* Soft Zoom Effect */
+}
+
+
+/* 📌 Subtle Color Transition for Steps */
+.instruction-step {
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.instruction-step:hover {
+    background: #eef7ff;
+    transform: scale(1.02);
+}
+
+/* 🎭 Loop Animation for Floating Effect */
+@keyframes loopFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+}
+.loop-node {
+    animation: loopFloat 3s infinite ease-in-out;
+}
+
+/* 🎨 Enhanced Floating Effect for Structure */
+@keyframes rnaFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(8px); }
+    100% { transform: translateY(0px); }
+}
+#rnaStructureContainer {
+    animation: rnaFloat 5s infinite ease-in-out;
+}
+
+
 /* Soft Glowing Effect During RNA Drawing */
 @keyframes softGlow {
     0% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.4); }
@@ -671,6 +859,104 @@ input[type="file"]:hover {
     }
 }
 
+/* Export Button Styling */
+.export-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.export-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Export Popup Styling */
+/* Export Popup Styling */
+.export-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* Start slightly smaller */
+    background: #d5eaf9;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px; /* Slightly smaller radius */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Reduced gap */
+    width: 270px; /* Slightly smaller width */
+    z-index: 1000;
+
+    border: 1px solid black; /* ✅ Added black border */
+    opacity: 0; /* ✅ Initially hidden */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* ✅ Smooth transition */
+}
+
+/* Show Popup with Smooth Fade-in & Zoom Effect */
+.export-popup.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Hide Popup */
+.hidden {
+    display: none;
+}
+
+/* Close Button */
+.close-btn {
+    background: #007bff; /* ✅ Blue background */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+.close-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* General Button Styling */
+.export-popup button {
+    background: #007bff; /* Blue color */
+    color: white;
+    padding: 6px 10px; /* Reduced padding */
+    font-size: 14px; /* Smaller font */
+    border: none;
+    cursor: pointer;
+    border-radius: 4px; /* More rectangular */
+    transition: background 0.3s, transform 0.2s;
+    width: 100%; /* Full width inside popup */
+}
+
+/* Hover Effect */
+.export-popup button:hover {
+    background: #0056b3; /* Darker Blue */
+    transform: scale(1.03);
+}
+
+/* Close Button */
+.close-btn {
+    background: #ff4d4d; /* Red for close */
+}
+
+.close-btn:hover {
+    background: #d9534f;
+}
+
+
+
+
 </style>
 
 
@@ -858,42 +1144,39 @@ function generateSteps(dna) {
 
 
 
-
-
-
-// Generate RNA secondary structures dynamically based on possible base pairs
+// Generate RNA secondary structures dynamically based on base pairs with slight variations
 function generateRNASecondaryStructures(rna) {
     let n = rna.length;
     let structures = [];
 
-    function generateStructure(sequence) {
+    function generateStructure(sequence, variationLevel = 0.5) {
         let structure = Array(sequence.length).fill('.'); // Default unpaired dots
         let stack = [];
 
         for (let i = 0; i < sequence.length; i++) {
-            if (sequence[i] === 'G' && sequence.includes('C', i + 1)) {
-                let j = sequence.indexOf('C', i + 1);
-                structure[i] = '(';
-                structure[j] = ')';
-                stack.push([i, j]);
-            } else if (sequence[i] === 'A' && sequence.includes('U', i + 1)) {
-                let j = sequence.indexOf('U', i + 1);
-                structure[i] = '(';
-                structure[j] = ')';
-                stack.push([i, j]);
+            for (let j = sequence.length - 1; j > i; j--) {
+                if (isPair(sequence[i], sequence[j]) && structure[i] === '.' && structure[j] === '.') {
+                    if (Math.random() > variationLevel) { // Introduce slight variation
+                        structure[i] = '(';
+                        structure[j] = ')';
+                        stack.push([i, j]);
+                        break;
+                    }
+                }
             }
         }
 
         return structure.join('');
     }
 
-    structures.push(generateStructure(rna)); // Generate first possible structure
-    structures.push(generateStructure(rna.split('').reverse().join(''))); // Reverse sequence structure
-    structures.push(generateStructure(rna.slice(1) + rna[0])); // Shifted sequence
-    structures.push(generateStructure(rna.split('').sort().join(''))); // Sorted sequence structure
+    structures.push(generateStructure(rna, 0.5)); // Original structure
+    structures.push(generateStructure(rna, 0.6)); // Slight variation
+    structures.push(generateStructure(rna, 0.72)); // More variation
+    structures.push(generateStructure(rna, 0.82)); // Most variation
 
     return structures;
 }
+
 
 // Compute free energy dynamically based on base pairs
 function computeStructureEnergy(structure, rna) {
@@ -1360,6 +1643,110 @@ function openRNAInfoPage() {
         </html>
     `);
     newWindow.document.close();
+}
+
+// Show Export Options Popup
+function showExportOptions() {
+    document.getElementById("exportPopup").classList.remove("hidden");
+    document.getElementById("exportPopup").classList.add("active");
+}
+
+// Close Export Popup
+function closeExportPopup() {
+    document.getElementById("exportPopup").classList.add("hidden");
+    document.getElementById("exportPopup").classList.remove("active");
+}
+
+// Convert RNA SVG to PNG or JPG and Download
+function downloadRNAImage(format) {
+    let svgElement = document.querySelector("#rnaContainer svg");
+
+    if (!svgElement) {
+        alert("RNA Structure not found! Generate it first.");
+        return;
+    }
+
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
+
+    // Set canvas dimensions based on SVG size
+    let svgBounds = svgElement.getBoundingClientRect();
+    canvas.width = svgBounds.width;
+    canvas.height = svgBounds.height;
+
+    // Convert SVG to a data URL
+    let svgData = new XMLSerializer().serializeToString(svgElement);
+    let svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+    let url = URL.createObjectURL(svgBlob);
+
+    let img = new Image();
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+
+        // Convert to PNG or JPG and trigger download
+        let imageType = format === "jpg" ? "image/jpeg" : "image/png";
+        let imageName = format === "jpg" ? "rna_structure.jpg" : "rna_structure.png";
+
+        let dataURL = canvas.toDataURL(imageType);
+        let link = document.createElement("a");
+        link.href = dataURL;
+        link.download = imageName;
+        link.click();
+    };
+    img.src = url;
+}
+
+// Download Simulation Steps & Data
+function downloadSimulationResults() {
+    let simulationSteps = document.getElementById("stepContainer").innerText;
+    let blob = new Blob([simulationSteps], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "simulation_results.txt";
+    link.click();
+}
+
+// Download Secondary Structure & Energy Data
+function downloadStructureData() {
+    let infoBox = document.getElementById("infoBox").innerText;
+    let blob = new Blob([infoBox], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "structure_energy_data.txt";
+    link.click();
+}
+
+function exportTextFile() {
+    let content = `RNA Secondary Structure Results\n`;
+    content += `=====================================\n`;
+    content += `🧬 Sequence Length: ${sequence.length} bases\n`;
+    content += `🔗 Base Pairs: ${basePairs}\n`;
+    content += `📈 GC Content: ${gcContent.toFixed(2)}%\n`;
+    content += `🔥 Stability: ${stability}\n`;
+    content += `⚡ Estimated Free Energy: ${energyEstimate} kcal/mol\n`;
+    content += `=====================================\n\n`;
+
+    content += `🔍 Loop Details:\n`;
+    for (let [type, data] of Object.entries(loopSummary)) {
+        content += `➤ ${type} (${data.count})\n`;
+        content += `   Positions: [${data.positions.join(", ")}]\n\n`;
+    }
+
+    content += `=====================================\n`;
+    content += `Generated using RNA Secondary Structure Prediction Tool\n`;
+    content += `© 2024 Your Website Name`;
+
+    // Create Blob with UTF-8 encoding
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+
+    // Download file
+    const element = document.createElement("a");
+    element.href = URL.createObjectURL(blob);
+    element.download = "RNA_Results.txt";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }
 
 
