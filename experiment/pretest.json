@@ -2,37 +2,68 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "1. The primary function of RNA in a cell is: ",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Storing genetic information",
+        "b": "Catalyzing chemical reactions",
+        "c": "Carrying genetic instructions and facilitating protein synthesis",
+        "d": "Maintaining cell structure"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
+      
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
+
+
     {
-      "question": "This is a Sample Question 2?",
+      "question": "2. What is the major difference between RNA and DNA?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "RNA is double-stranded, while DNA is single-stranded",
+        "b": "RNA contains deoxyribose, while DNA contains ribose",
+        "c": "RNA contains uracil instead of thymine",
+        "d": "RNA is more stable than DNA"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
+      
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+
+    {
+      "question": "3. The key feature of Watson-Crick base pairing?",
+      "answers": {
+        "a": "A pairs with G, and C pairs with U",
+        "b": "G pairs with C, and A pairs with U",
+        "c": "T pairs with G, and A pairs with C",
+        "d": "U pairs with C, and G pairs with A"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+    {
+      "question": "4. Which of the following is not a common RNA secondary structure motif?",
+      "answers": {
+        "a": "Hairpin loop",
+        "b": "Alpha-helix",
+        "c": "Internal loop",
+        "d": "Bulge"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+    {
+      "question": "5. What type of bonds holds RNA base pairs together?",
+      "answers": {
+        "a": "Ionic bonds",
+        "b": "Hydrogen bonds",
+        "c": "Covalent bonds",
+        "d": "Peptide bonds"
+      },
+      
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]
