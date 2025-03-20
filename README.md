@@ -8,7 +8,7 @@
 
 ### About the Experiment 
 
-Fill a brief description of this experiment here
+The Zuker Algorithm is a well-known method for predicting the structure of RNA molecules. It works by finding the most stable shape that the RNA can fold into, using a process called dynamic programming. The algorithm considers different RNA features like loops and pairs of bases to predict the structure with the least energy. This method is widely used in research to study RNA folding and its role in biological processes.
 
 <b>Name of Developer | <b> Dr. Shyam Diwakar 
 :--|:--|
