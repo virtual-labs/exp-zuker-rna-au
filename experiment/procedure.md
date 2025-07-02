@@ -73,6 +73,39 @@ Click on “Show Most Stable Structure” to see the most stable RNA structure. 
 
 <img src="images/p10.png" title="" />
 
+&nbsp;
+
+
+#### Interpretation of the Dot-Bracket Notation Key from the figure 
+
+**Step 1** is the conversion of DNA to RNA
+
+**Step 2** is the possible RNA secondary Structure Predictions.
+
+
+1.	Structure 1: (((...))) 
+
+`  ` A stem-loop (hairpin) with 3 base pairs on each side enclosing a 3-nucleotide loop in the middle. Indicates a classic hairpin loop with strong base pairing.
+
+2.	Structure 2: ((...)).
+
+`  ` A 2-base-pair stem followed by a 3-nucleotide loop, then a single unpaired nucleotide. Slightly less stable than structure 1 due to fewer base pairs and more unpaired regions.
+
+3.	Structure 3: (......)
+
+`  ` A 1-base-pair stem enclosing a 6-nucleotide loop. Much less stable due to minimal pairing.
+
+4.	Structure 4: (.). (.)..
+
+`  ` Multiple small, separated stem elements with mostly unpaired regions. The least stable structure due to minimal pairing and high entropy.
+
+**Step 3** calculate the Gibbs free energy of each structure.
+
+**Step 4** predict the most stable structure as structure 3 with -5.87 kcal/mol.
+
+
+
+&nbsp;
 
 
 

@@ -66,6 +66,14 @@ Determines the spontaneity of RNA folding. A negative ΔG indicates a thermodyna
 
 RNA folding is governed by thermodynamic principles, particularly Gibbs free energy (ΔG). The Gibbs free energy of RNA folding determines the stability of a given structure, where a more negative ΔG value indicates a more thermodynamically favourable conformation. RNA molecules fold into structures that minimize their free energy by balancing base-pairing, stacking interactions, and loop formation. Computational RNA structure prediction methods, such as the Zuker algorithm, utilize thermodynamic parameters to estimate the most stable conformation by identifying the structure with the lowest Gibbs free energy.
 
+&nbsp;
+
+
+### Free Energy Calculation in RNA Folding 
+RNA folding is governed by thermodynamic principles, particularly Gibbs free energy (ΔG). For RNA secondary structure prediction, the calculation of Gibbs free energy (ΔG) plays a central role in identifying the most thermodynamically stable structure. The Gibbs free energy of RNA folding determines the stability of a given structure, where a more negative ΔG value indicates a more thermodynamically favourable conformation. RNA molecules fold into structures that minimize their free energy by balancing base-pairing, stacking interactions, and loop formation. This approach ensures that RNA folding predictions reflect the natural tendency of RNA molecules to adopt the most energetically favourable state. Computational tools based on the Zuker algorithm evaluate multiple possible secondary structures for a given RNA sequence and calculate the free energy for each configuration using experimentally derived thermodynamic parameters. 
+
+&nbsp;
+
 
 ## Zuker’S algorithm
 
