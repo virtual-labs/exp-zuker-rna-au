@@ -1,0 +1,74 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What does Zuker’s Algorithm use to predict RNA secondary structures?",
+      "answers": {
+        "a": "Quantum mechanics",
+        "b": "Thermodynamic modelling and dynamic programming",
+        "c": "Machine learning",
+        "d": "DNA sequence similarity"
+      },
+
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    
+    
+    {
+      "question": "2. Which of the following is a thermodynamic parameter used in RNA structure prediction?",
+      "answers": {
+        "a": "Enthalpy (ΔH)",
+        "b": "Entropy (ΔS)",
+        "c": "Gibbs free energy (ΔG)",
+        "d": "All of the above"
+      },
+
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "question": "3. The base stacking is important in RNA structure because: ",
+      "answers": {
+        "a": "It increases the flexibility of the RNA molecule",
+        "b": "It stabilizes the helical regions through π-π interactions",
+        "c": "It disrupts hydrogen bonding",
+        "d": "It prevents RNA from folding"
+      },
+
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "question": "4. Which of the following RNA structures is best predicted using Zuker’s Algorithm?",
+      "answers": {
+        "a": "Quaternary protein structures",
+        "b": "Double-stranded DNA",
+        "c": "RNA hairpin loops and internal loops",
+        "d": "Entire chromosome sequences"
+      },
+
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    
+        
+    
+    {
+      "question": "5. How does Zuker’s Algorithm predict RNA secondary structures?",
+      "answers": {
+        "a": "By aligning RNA sequences to DNA",
+        "b": "By searching for RNA motifs",
+        "c": "By calculating the minimum free energy using dynamic programming",
+        "d": "By randomly generating secondary structures"
+      },
+
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    }
+  ]
+}
